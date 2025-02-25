@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.liftstrong.data.local.entity.WorkoutEntity
 import com.liftstrong.data.local.entity.WorkoutExerciseEntity
+import com.liftstrong.data.repository.ExerciseRepository
 import com.liftstrong.data.repository.UserRepository
 import com.liftstrong.data.repository.WorkoutRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,14 +23,15 @@ import javax.inject.Inject
 @HiltViewModel
 class WorkoutDetailViewModel @Inject constructor(
     private val workoutRepository: WorkoutRepository,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val exerciseRepository: ExerciseRepository
 ) : ViewModel() {
     
     private val _workout = MutableLiveData<WorkoutEntity>()
     val workout: LiveData<WorkoutEntity> = _workout
     
-    private val _exercises = MutableLiveData<List<WorkoutExerciseEntity>>()
-    val exercises: LiveData<List<WorkoutExerciseEntity>> = _exercises
+    private val _workoutExercises = MutableLiveData<List<WorkoutExerciseWithExercise>>()
+    val workoutExercises: LiveData<List<WorkoutExerciseWithExercise>> = _workoutExercises
     
     private var workoutId: Int = -1
     private var startTime: LocalDateTime = LocalDateTime.now()
@@ -74,8 +76,42 @@ class WorkoutDetailViewModel @Inject constructor(
      */
     private fun loadExercises(workoutId: Int) {
         viewModelScope.launch {
-            val exercises = workoutRepository.getWorkoutExercisesForWorkout(workoutId)
-            _exercises.postValue(exercises)
+            // Get all workout exercises for the workout
+            val workoutExercises = workoutRepository.getWorkoutExercisesForWorkout(workoutId)
+            
+            // Create a list to hold the combined data
+            val workoutExercisesWithData = mutableListOf<WorkoutExerciseWithExercise>()
+            
+            // For each workout exercise, get the exercise and sets
+            for (workoutExercise in workoutExercises) {
+                // Get the exercise
+                val exercise = exerciseRepository.getExerciseById(workoutExercise.exerciseId)
+                
+                // Get the sets for this workout exercise
+                val sets = workoutRepository.getWorkoutSetsForWorkoutExercise(workoutExercise.id)
+                
+                // Create a list of WorkoutSetWithNumber
+                val setsWithNumbers = sets.mapIndexed { index, set ->
+                    WorkoutSetWithNumber(set, index + 1)
+                }
+                
+                // Add to the list
+                if (exercise != null) {
+                    workoutExercisesWithData.add(
+                        WorkoutExerciseWithExercise(
+                            workoutExercise = workoutExercise,
+                            exercise = exercise,
+                            sets = setsWithNumbers
+                        )
+                    )
+                }
+            }
+            
+            // Sort by order
+            workoutExercisesWithData.sortBy { it.workoutExercise.order }
+            
+            // Update the LiveData
+            _workoutExercises.postValue(workoutExercisesWithData)
         }
     }
     
@@ -87,7 +123,7 @@ class WorkoutDetailViewModel @Inject constructor(
     fun addExercise(exerciseId: Int) {
         viewModelScope.launch {
             if (workoutId != -1) {
-                val order = (_exercises.value?.size ?: 0) + 1
+                val order = (_workoutExercises.value?.size ?: 0) + 1
                 workoutRepository.addExerciseToWorkout(
                     workoutId = workoutId,
                     exerciseId = exerciseId,
@@ -95,6 +131,30 @@ class WorkoutDetailViewModel @Inject constructor(
                 )
                 loadExercises(workoutId)
             }
+        }
+    }
+    
+    /**
+     * Remove a workout exercise.
+     * 
+     * @param workoutExerciseId The ID of the workout exercise to remove.
+     */
+    fun removeWorkoutExercise(workoutExerciseId: Int) {
+        viewModelScope.launch {
+            workoutRepository.deleteWorkoutExerciseById(workoutExerciseId)
+            loadExercises(workoutId)
+        }
+    }
+    
+    /**
+     * Remove a workout set.
+     * 
+     * @param setId The ID of the workout set to remove.
+     */
+    fun removeWorkoutSet(setId: Int) {
+        viewModelScope.launch {
+            workoutRepository.deleteWorkoutSetById(setId)
+            loadExercises(workoutId)
         }
     }
     

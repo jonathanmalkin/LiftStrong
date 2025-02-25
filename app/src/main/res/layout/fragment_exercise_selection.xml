@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:padding="16dp" tools:context=".ui.workout.ExerciseSelectionFragment">
+
+    <TextView android:id="@+id/text_title" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/select_exercise" android:textAppearance="?attr/textAppearanceHeadline4" android:textColor="@color/text_primary" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout android:id="@+id/layout_search" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:hint="@string/search_exercises" app:endIconMode="clear_text" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/text_title">
+
+        <com.google.android.material.textfield.TextInputEditText android:id="@+id/edit_search" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="text" android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.tabs.TabLayout android:id="@+id/tab_layout" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="16dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/layout_search" app:tabMode="scrollable">
+
+        <com.google.android.material.tabs.TabItem android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/all" />
+
+        <com.google.android.material.tabs.TabItem android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/chest" />
+
+        <com.google.android.material.tabs.TabItem android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/back" />
+
+        <com.google.android.material.tabs.TabItem android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/legs" />
+
+        <com.google.android.material.tabs.TabItem android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/shoulders" />
+
+        <com.google.android.material.tabs.TabItem android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/arms" />
+
+        <com.google.android.material.tabs.TabItem android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/core" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/recycler_exercises" android:layout_width="0dp" android:layout_height="0dp" android:layout_marginTop="8dp" app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/tab_layout" tools:listitem="@layout/item_exercise" />
+
+    <TextView android:id="@+id/text_empty" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/no_exercises_found" android:textAlignment="center" android:textAppearance="?attr/textAppearanceBody1" android:textColor="@color/text_secondary" android:visibility="gone" app:layout_constraintBottom_toBottomOf="@id/recycler_exercises" app:layout_constraintEnd_toEndOf="@id/recycler_exercises" app:layout_constraintStart_toStartOf="@id/recycler_exercises" app:layout_constraintTop_toTopOf="@id/recycler_exercises" />
+
+    <ProgressBar android:id="@+id/progress_bar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone" app:layout_constraintBottom_toBottomOf="@id/recycler_exercises" app:layout_constraintEnd_toEndOf="@id/recycler_exercises" app:layout_constraintStart_toStartOf="@id/recycler_exercises" app:layout_constraintTop_toTopOf="@id/recycler_exercises" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

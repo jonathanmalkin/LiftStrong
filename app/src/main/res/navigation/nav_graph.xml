@@ -10,6 +10,11 @@
 
     <fragment android:id="@+id/navigation_workout_detail" android:name="com.liftstrong.ui.workout.WorkoutDetailFragment" android:label="@string/start_workout" tools:layout="@layout/fragment_workout_detail">
         <argument android:name="workoutId" app:argType="integer" android:defaultValue="-1" />
+        <action android:id="@+id/action_workout_detail_to_exercise_selection" app:destination="@id/navigation_exercise_selection" />
+    </fragment>
+
+    <fragment android:id="@+id/navigation_exercise_selection" android:name="com.liftstrong.ui.workout.ExerciseSelectionFragment" android:label="@string/select_exercise" tools:layout="@layout/fragment_exercise_selection">
+        <argument android:name="workoutId" app:argType="integer" />
     </fragment>
 
     <fragment android:id="@+id/navigation_workout_history" android:name="com.liftstrong.ui.workout.WorkoutHistoryFragment" android:label="@string/workout_history" tools:layout="@layout/fragment_workout_history">

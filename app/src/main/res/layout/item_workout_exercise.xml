@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="4dp" android:layout_marginTop="4dp" android:layout_marginEnd="4dp" android:layout_marginBottom="4dp" app:cardCornerRadius="8dp" app:cardElevation="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="12dp">
+
+        <TextView android:id="@+id/text_exercise_name" android:layout_width="0dp" android:layout_height="wrap_content" android:textAppearance="?attr/textAppearanceSubtitle1" android:textColor="@color/text_primary" app:layout_constraintEnd_toStartOf="@id/button_remove" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" tools:text="Barbell Bench Press" />
+
+        <TextView android:id="@+id/text_muscle_groups" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:textAppearance="?attr/textAppearanceCaption" android:textColor="@color/text_secondary" app:layout_constraintEnd_toStartOf="@id/button_remove" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/text_exercise_name" tools:text="Chest, Triceps, Shoulders" />
+
+        <ImageButton android:id="@+id/button_remove" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="?attr/selectableItemBackgroundBorderless" android:contentDescription="@string/remove" android:padding="8dp" android:src="@android:drawable/ic_menu_close_clear_cancel" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:tint="@color/text_secondary" />
+
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/recycler_sets" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="8dp" app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/text_muscle_groups" tools:itemCount="2" tools:listitem="@layout/item_workout_set" />
+
+        <com.google.android.material.button.MaterialButton android:id="@+id/button_add_set" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/add_set" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/recycler_sets" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
