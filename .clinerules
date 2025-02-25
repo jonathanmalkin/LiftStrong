@@ -1,0 +1,51 @@
+# LiftStrong Project Rules
+
+This file captures important patterns, preferences, and project intelligence for the LiftStrong Android workout tracking app.
+
+## Project Structure
+
+- The project follows the MVVM architecture pattern
+- Data is stored locally using Room Persistence Library
+- UI is built using fragments within a single activity
+- Navigation is handled by the Navigation Component
+- Dependency injection is implemented using Hilt
+
+## Coding Conventions
+
+- Kotlin is the primary programming language
+- Follow Android and Kotlin coding conventions
+- Use coroutines for asynchronous operations
+- Use LiveData and Flow for reactive programming
+- Implement repository pattern for data access
+
+## File Organization
+
+- Package by feature, not by layer
+- Keep related code together
+- Use clear, descriptive naming
+- Follow Android resource naming conventions
+
+## Database Conventions
+
+- Table names should be singular (e.g., "workout" not "workouts")
+- Primary keys should be named "id"
+- Foreign keys should be named "[table]Id" (e.g., "exerciseId")
+- Use appropriate data types (INTEGER, TEXT, REAL, BLOB)
+- Define indices for frequently queried columns
+
+## UI Guidelines
+
+- Follow Material Design guidelines
+- Use ConstraintLayout for complex layouts
+- Use RecyclerView for lists
+- Implement data binding where appropriate
+- Keep fragments focused on a single responsibility
+
+## Memory Bank Maintenance
+
+- Update memory bank files when implementing significant changes
+- Keep activeContext.md and progress.md up to date
+- Document technical decisions and their rationale
+- Track progress and known issues
+
+This file will be updated as new patterns and preferences are discovered during the development process.
