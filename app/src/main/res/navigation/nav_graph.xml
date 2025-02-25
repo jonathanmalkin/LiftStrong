@@ -1,71 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/navigation_workouts">
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph" app:startDestination="@id/navigation_workouts">
 
-    <fragment
-        android:id="@+id/navigation_workouts"
-        android:name="com.liftstrong.ui.workout.WorkoutFragment"
-        android:label="@string/nav_workouts"
-        tools:layout="@layout/fragment_workout">
-        <action
-            android:id="@+id/action_workouts_to_workout_detail"
-            app:destination="@id/navigation_workout_detail" />
-        <action
-            android:id="@+id/action_workouts_to_workout_history"
-            app:destination="@id/navigation_workout_history" />
+    <fragment android:id="@+id/navigation_workouts" android:name="com.liftstrong.ui.workout.WorkoutFragment" android:label="@string/nav_workouts" tools:layout="@layout/fragment_workout">
+        <action android:id="@+id/action_workouts_to_workout_detail" app:destination="@id/navigation_workout_detail" />
+        <action android:id="@+id/action_workouts_to_workout_history" app:destination="@id/navigation_workout_history" />
     </fragment>
 
-    <fragment
-        android:id="@+id/navigation_workout_detail"
-        android:name="com.liftstrong.ui.workout.WorkoutDetailFragment"
-        android:label="@string/start_workout"
-        tools:layout="@layout/fragment_workout_detail">
-        <argument
-            android:name="workoutId"
-            app:argType="integer"
-            android:defaultValue="-1" />
+    <fragment android:id="@+id/navigation_workout_detail" android:name="com.liftstrong.ui.workout.WorkoutDetailFragment" android:label="@string/start_workout" tools:layout="@layout/fragment_workout_detail">
+        <argument android:name="workoutId" app:argType="integer" android:defaultValue="-1" />
     </fragment>
 
-    <fragment
-        android:id="@+id/navigation_workout_history"
-        android:name="com.liftstrong.ui.workout.WorkoutHistoryFragment"
-        android:label="@string/workout_history"
-        tools:layout="@layout/fragment_workout_history" />
-
-    <fragment
-        android:id="@+id/navigation_progress"
-        android:name="com.liftstrong.ui.progress.ProgressFragment"
-        android:label="@string/nav_progress"
-        tools:layout="@layout/fragment_progress" />
-
-    <fragment
-        android:id="@+id/navigation_routines"
-        android:name="com.liftstrong.ui.routines.RoutinesFragment"
-        android:label="@string/nav_routines"
-        tools:layout="@layout/fragment_routines">
-        <action
-            android:id="@+id/action_routines_to_routine_detail"
-            app:destination="@id/navigation_routine_detail" />
+    <fragment android:id="@+id/navigation_workout_history" android:name="com.liftstrong.ui.workout.WorkoutHistoryFragment" android:label="@string/workout_history" tools:layout="@layout/fragment_workout_history">
+        <action android:id="@+id/action_workout_history_to_workout_detail" app:destination="@id/navigation_workout_detail" />
     </fragment>
 
-    <fragment
-        android:id="@+id/navigation_routine_detail"
-        android:name="com.liftstrong.ui.routines.RoutineDetailFragment"
-        android:label="Routine Detail"
-        tools:layout="@layout/fragment_routine_detail">
-        <argument
-            android:name="routineId"
-            app:argType="integer"
-            android:defaultValue="-1" />
+    <fragment android:id="@+id/navigation_progress" android:name="com.liftstrong.ui.progress.ProgressFragment" android:label="@string/nav_progress" tools:layout="@layout/fragment_progress" />
+
+    <fragment android:id="@+id/navigation_routines" android:name="com.liftstrong.ui.routines.RoutinesFragment" android:label="@string/nav_routines" tools:layout="@layout/fragment_routines">
+        <action android:id="@+id/action_routines_to_routine_detail" app:destination="@id/navigation_routine_detail" />
     </fragment>
 
-    <fragment
-        android:id="@+id/navigation_profile"
-        android:name="com.liftstrong.ui.profile.ProfileFragment"
-        android:label="@string/nav_profile"
-        tools:layout="@layout/fragment_profile" />
+    <fragment android:id="@+id/navigation_routine_detail" android:name="com.liftstrong.ui.routines.RoutineDetailFragment" android:label="Routine Detail" tools:layout="@layout/fragment_routine_detail">
+        <argument android:name="routineId" app:argType="integer" android:defaultValue="-1" />
+    </fragment>
+
+    <fragment android:id="@+id/navigation_profile" android:name="com.liftstrong.ui.profile.ProfileFragment" android:label="@string/nav_profile" tools:layout="@layout/fragment_profile" />
 
 </navigation>

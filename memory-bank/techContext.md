@@ -34,10 +34,32 @@
 
 ### Required Tools
 - **Android Studio**: Primary IDE for Android development.
-- **JDK 11+**: Java Development Kit.
+- **Visual Studio Code**: Secondary IDE with extensions for Android development.
+- **JDK 17**: Java Development Kit.
 - **Android SDK**: Software Development Kit for Android.
 - **Gradle**: Build automation tool.
 - **Git**: Version control system.
+
+### VS Code Configuration
+- **Extensions**:
+  - Android Extension Pack: Comprehensive Android development tools
+  - Kotlin Language: Syntax highlighting and IntelliSense for Kotlin
+  - XML Tools: For Android layout files
+  - Material Icon Theme: Better visualization of Android project files
+  - Path Intellisense: Auto-completes filenames
+  - Gradle Language Support: For build.gradle files
+  - Git Graph: Visualize Git history
+
+- **Project Settings**:
+  - Custom settings.json with Android-specific configurations
+  - launch.json for debugging on emulators and physical devices
+  - tasks.json with build, install, and run tasks
+  - Gradle optimization settings
+
+- **Environment Variables**:
+  - ANDROID_HOME: Points to Android SDK location
+  - JAVA_HOME: Points to JDK 17 installation
+  - PATH: Includes Android SDK tools and platform-tools
 
 ### Project Structure
 The project follows the standard Android project structure with some customizations:

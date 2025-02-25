@@ -18,6 +18,16 @@ Recent changes to the project include:
    - Added ic_launcher.png and ic_launcher_round.png placeholder files for all density buckets (mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi)
    - Implemented a blue dumbbell icon on white background to represent the fitness focus of the app
 
+2. **VS Code Setup for Android Development**:
+   - Configured environment variables in ~/.zshrc for Android SDK and JDK
+   - Installed essential VS Code extensions for Android and Kotlin development
+   - Created VS Code configuration files (.vscode directory) with:
+     - settings.json: Optimized settings for Android/Kotlin development
+     - launch.json: Debug configurations for emulators and physical devices
+     - tasks.json: Build, install, and run tasks
+   - Optimized Gradle performance with global gradle.properties
+   - Documented the setup in .vscode/README.md
+
 The memory bank is being maintained with the core documentation files:
 
 - projectbrief.md: Comprehensive breakdown of the app design and features

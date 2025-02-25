@@ -1,0 +1,57 @@
+{
+    // Place your key bindings in this file to override the defaults
+    "keybindings": [
+        // Build tasks
+        {
+            "key": "ctrl+f5",
+            "command": "workbench.action.tasks.runTask",
+            "args": "Build Debug APK",
+            "when": "editorTextFocus"
+        },
+        {
+            "key": "ctrl+shift+f5",
+            "command": "workbench.action.tasks.runTask",
+            "args": "Clean and Build Debug",
+            "when": "editorTextFocus"
+        },
+        // Run tasks
+        {
+            "key": "ctrl+f6",
+            "command": "workbench.action.tasks.runTask",
+            "args": "Build and Run on Emulator",
+            "when": "editorTextFocus"
+        },
+        {
+            "key": "ctrl+shift+f6",
+            "command": "workbench.action.tasks.runTask",
+            "args": "Build and Run on Device",
+            "when": "editorTextFocus"
+        },
+        // Debug tasks
+        {
+            "key": "ctrl+f7",
+            "command": "workbench.action.debug.start",
+            "args": "Launch App on Emulator",
+            "when": "editorTextFocus"
+        },
+        {
+            "key": "ctrl+shift+f7",
+            "command": "workbench.action.debug.start",
+            "args": "Launch App on Device",
+            "when": "editorTextFocus"
+        },
+        // Log tasks
+        {
+            "key": "ctrl+l",
+            "command": "workbench.action.tasks.runTask",
+            "args": "Show App Logs",
+            "when": "editorTextFocus"
+        },
+        {
+            "key": "ctrl+shift+l",
+            "command": "workbench.action.tasks.runTask",
+            "args": "Clear Logs",
+            "when": "editorTextFocus"
+        }
+    ]
+}

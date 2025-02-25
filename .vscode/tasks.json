@@ -1,0 +1,140 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        // Build tasks
+        {
+            "label": "Build Debug APK",
+            "type": "shell",
+            "command": "./gradlew assembleDebug",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Release APK",
+            "type": "shell",
+            "command": "./gradlew assembleRelease",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean Project",
+            "type": "shell",
+            "command": "./gradlew clean",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean and Build Debug",
+            "type": "shell",
+            "command": "./clean-build.sh",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean and Build Release",
+            "type": "shell",
+            "command": "./clean-build.sh --release",
+            "group": "build",
+            "problemMatcher": []
+        },
+        // Device tasks
+        {
+            "label": "Install on Device",
+            "type": "shell",
+            "command": "adb install -r ./app/build/outputs/apk/debug/app-debug.apk",
+            "dependsOn": [
+                "Build Debug APK"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "List Connected Devices",
+            "type": "shell",
+            "command": "adb devices",
+            "problemMatcher": []
+        },
+        // Emulator tasks
+        {
+            "label": "List Emulators",
+            "type": "shell",
+            "command": "${env:ANDROID_HOME}/emulator/emulator -list-avds",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run Emulator",
+            "type": "shell",
+            "command": "${env:ANDROID_HOME}/emulator/emulator -avd ${input:emulatorName}",
+            "problemMatcher": []
+        },
+        // Logging tasks
+        {
+            "label": "Show App Logs",
+            "type": "shell",
+            "command": "./show-logs.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "Clear Logs",
+            "type": "shell",
+            "command": "./show-logs.sh --clear",
+            "problemMatcher": []
+        },
+        {
+            "label": "Show All Logs",
+            "type": "shell",
+            "command": "./show-logs.sh --all",
+            "problemMatcher": []
+        },
+        // Combined workflow tasks
+        {
+            "label": "Build and Run on Device",
+            "type": "shell",
+            "command": "./run-on-device.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build and Run on Emulator",
+            "type": "shell",
+            "command": "./run-on-emulator.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build and Run on Specific Emulator",
+            "type": "shell",
+            "command": "./run-on-emulator.sh ${input:emulatorName}",
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean, Build and Run on Device",
+            "type": "shell",
+            "command": "./clean-build.sh && ./run-on-device.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean, Build and Run on Emulator",
+            "type": "shell",
+            "command": "./clean-build.sh && ./run-on-emulator.sh",
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "emulatorName",
+            "type": "pickString",
+            "description": "Select an emulator",
+            "options": [
+                "Medium_Phone_API_35"
+            ],
+            "default": "Medium_Phone_API_35"
+        },
+        {
+            "id": "deviceId",
+            "type": "promptString",
+            "description": "Enter device ID (leave empty for first connected device)",
+            "default": ""
+        }
+    ]
+}
