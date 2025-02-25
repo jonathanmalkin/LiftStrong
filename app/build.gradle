@@ -1,17 +1,18 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
+    id 'com.google.dagger.hilt.android'
     id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
-    compileSdkVersion 33
+    namespace 'com.liftstrong'
+    compileSdk 33
     defaultConfig {
         applicationId "com.liftstrong"
-        minSdkVersion 23
-        targetSdkVersion 33
+        minSdk 23
+        targetSdk 33
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
